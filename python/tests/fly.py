@@ -4,6 +4,7 @@ from __future__ import division
 from mkp.algorithms import mtm
 import numpy as np
 import time
+import csv
 
 # p = [110, 150, 70, 80, 30, 5]
 # w = [40, 60, 30, 40, 20, 5]
@@ -54,6 +55,16 @@ def heuristic(p, w, c):
     
     return z, y
 
+
+def write_csv(f, z, t):
+    filename = '{}_result.csv'.format(f)
+    with open(filename, mode='w') as csv_file:
+        fieldnames = ['total', 'time']
+        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerow({'total': z, 'time': t})
+
+
 def main():
     n = 10
     m = 3
@@ -61,18 +72,16 @@ def main():
 
     start = time.perf_counter()
     z,x,bt,_ = mtm(p, w, c)
-    print('Total profit: %d' % z)
-    print('Solution: %s' % x)
-    print('Number of backtracks performed: %d' % bt)
-    print('Time spent: %.5f' % round(time.perf_counter() - start, 5))
-    print('=============================')
+    t = round(time.perf_counter() - start, 5)
+    write_csv('o', z, t)
+
 
     start = time.perf_counter()
     z,x = heuristic(p, w, c)
-    print('Total profit: %d' % sum(z))
-    print('Solution: %s' % x)
-    print('Time spent: %.5f' % round(time.perf_counter() - start, 5))
-    print('=============================')
+    t = round(time.perf_counter() - start, 5)
+    write_csv('g', z, t)
+
+
 
 if __name__ == '__main__':
     main()
