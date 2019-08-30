@@ -27,6 +27,11 @@ def format_all_csv(n, m):
                 time_spent_g.append(df1['time'][0])
                 total_profit_e.append(df2['total'][0])
                 time_spent_e.append(df2['time'][0])
+            
+            total_profit_g = sum(total_profit_g) / 100
+            time_spent_g = sum(time_spent_g) / 100
+            total_profit_e = sum(total_profit_e) / 100
+            time_spent_e = sum(time_spent_e) / 100
 
 
     df = pd.DataFrame({'x': concurrency, 'y1': durations, 'y2': avg_rtts, 'y3': rqs, 'y4': failures})

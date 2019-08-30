@@ -18,7 +18,7 @@ def greatest_common_divisor(l):
     return reduce(gcd, l)
   
   
-def mtm(p, w, c, max_bt=-1, max_time=360):
+def mtm(p, w, c, max_bt=-1, max_time=180):
     """Solves Multiple 0-1 Knapsack Problem with MTM algorithm.
       
     Args:
