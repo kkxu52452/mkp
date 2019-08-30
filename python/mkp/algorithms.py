@@ -18,7 +18,7 @@ def greatest_common_divisor(l):
     return reduce(gcd, l)
   
   
-def mtm(p, w, c, max_bt=-1, max_time=3600):
+def mtm(p, w, c, max_bt=-1, max_time=360):
     """Solves Multiple 0-1 Knapsack Problem with MTM algorithm.
       
     Args:
@@ -28,7 +28,7 @@ def mtm(p, w, c, max_bt=-1, max_time=3600):
         max_bt (int): Maximum number of backtracks to perform. Defaults to -1,
             which is unlimited.
         max_time (int): Number of seconds after which the best solution so far
-            is returned. Defaults to 3600.
+            is returned. Defaults to 360.
           
     Returns:
         x (list): Assigned knapsacks for each item. Knapsack '-1' indicates
