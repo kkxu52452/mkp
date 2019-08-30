@@ -53,7 +53,7 @@ def heuristic(p, w, c):
                 c_bar[i] = c_bar[i] - w[j]
                 z.append(p[j])
     
-    return z, y
+    return sum(z), y
 
 
 def write_csv(f, z, t):
@@ -71,15 +71,14 @@ def main():
     p, w, c = generate_random_data(n, m)
 
     start = time.perf_counter()
-    z,x,bt,_ = mtm(p, w, c)
-    t = round(time.perf_counter() - start, 5)
-    write_csv('o', z, t)
-
-
-    start = time.perf_counter()
     z,x = heuristic(p, w, c)
     t = round(time.perf_counter() - start, 5)
     write_csv('g', z, t)
+
+    start = time.perf_counter()
+    z,x,bt,_ = mtm(p, w, c)
+    t = round(time.perf_counter() - start, 5)
+    write_csv('o', z, t)
 
 
 
