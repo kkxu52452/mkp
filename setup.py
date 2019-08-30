@@ -18,8 +18,8 @@ ext_modules += cythonize(Extension(
 
 ext_modules += cythonize(Extension(
     "mkp._algorithms_cy.mthm", 
-    sources=["cpp/mthm.hpp","cpp/math_utils.hpp","cpp/greedy.hpp","python/mkp/_algorithms_cy/mthm.pyx"], 
-    include_dirs=['cpp/'],
+    sources=["cpp/mthm.cpp","cpp/math_utils.cpp","cpp/greedy.cpp","python/mkp/_algorithms_cy/mthm.pyx"], 
+    include_dirs=['cpp/'],      
     language='c++',
     extra_compile_args=["-std=c++1y"]))
 

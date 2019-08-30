@@ -7,8 +7,8 @@
 #include <vector>
 #include <set>
 
-#include "math_utils.hpp"
-#include "greedy.hpp"
+#include "math_utils.cpp"
+#include "greedy.cpp"
 
 
 namespace mkp {
