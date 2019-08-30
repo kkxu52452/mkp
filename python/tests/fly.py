@@ -28,8 +28,8 @@ def greedy(i):
 
 print('Greedy algorithm')
 start = time.perf_counter()
-n = 2
-m = 6
+n = 6
+m = 2
 # p, w, c = generate_random_data(n, m)
 
 y = [0]*n
