@@ -11,13 +11,13 @@ import shutil
 # c = [65, 85]
  
 
-def generate_random_data(n, m, range):
+def generate_random_data(n, m, ra):
     rng = np.random
 
     # weights
-    w = rng.randint(1, range, size=n)
+    w = rng.randint(1, ra, size=n)
     # profits
-    p = rng.randint(1, range, size=n)
+    p = rng.randint(1, ra, size=n)
     # capacities
     c = []
     lower_index = 0
