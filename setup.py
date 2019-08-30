@@ -16,12 +16,25 @@ ext_modules += cythonize(Extension(
     language='c++',
     extra_compile_args=["-std=c++1y"]))
 
-ext_modules += cythonize(Extension(
-    "mkp._algorithms_cy.mthm", 
-    sources=["cpp/mthm.cpp","cpp/math_utils.cpp","cpp/greedy.cpp","python/mkp/_algorithms_cy/mthm.pyx"], 
-    include_dirs=['cpp/'],      
-    language='c++',
-    extra_compile_args=["-std=c++1y"]))
+extentions_info = [
+    {
+        "cython_sourcefile": "python/mkp/_algorithms_cy/mthm.pyx"
+    }
+]
+
+for extention_info in extentions_info:
+    sourcefiles = extention_info.get("cpp_sourcefiles", [])
+    cython_sourcefile = extention_info.get("cython_sourcefile")
+    sourcefiles += [cython_sourcefile]
+    
+    # NOTE: extension name must match .pyx file name
+    extension_name = cython_sourcefile.replace('.pyx', '').replace(os.sep, '.')
+    ext_modules += cythonize(Extension(
+                                extension_name,
+                                sources=sourcefiles,
+                                include_dirs=['c++'],
+                                language='c++',
+                                extra_compile_args=["-std=c++1y"]))
 
 
 setup(name='mkp',
