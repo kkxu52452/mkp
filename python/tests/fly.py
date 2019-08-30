@@ -19,6 +19,13 @@ print('Time spent: %.5f' % round(time.perf_counter() - start, 5))
 print('============================')
 
 
+def greedy(i):
+    for j in range(n):
+        if y[j] == -1 and w[j] < c_bar[i]:
+            y[j] = i
+            c_bar[i] = c_bar[i] - w[j]
+            z.append(p[j])
+
 print('Greedy algorithm')
 start = time.perf_counter()
 n = 2
@@ -63,14 +70,6 @@ print('=============================')
 #     print('Total profit: %d' % sum(z))
 #     print('Solution: %s' % y)
 #     print('Time spent: %.5f' % round(time.perf_counter() - start, 5))
-
-
-def greedy(i):
-    for j in range(n):
-        if y[j] == -1 and w[j] < c_bar[i]:
-            y[j] = i
-            c_bar[i] = c_bar[i] - w[j]
-            z.append(p[j])
 
 
 def generate_random_data(n, m):
