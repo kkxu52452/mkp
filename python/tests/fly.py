@@ -11,13 +11,13 @@ import shutil
 # c = [65, 85]
  
 
-def generate_random_data(n, m):
+def generate_random_data(n, m, range):
     rng = np.random
 
     # weights
-    w = rng.randint(1, 51, size=n)
+    w = rng.randint(1, range, size=n)
     # profits
-    p = rng.randint(1, 51, size=n)
+    p = rng.randint(1, range, size=n)
     # capacities
     c = []
     lower_index = 0
@@ -85,8 +85,8 @@ def main():
             n_dir = os.path.join(m_dir, str(j))
             os.mkdir(n_dir)
             os.chdir(n_dir)
-            p, w, c = generate_random_data(j, i)
-            for r in range(100):
+            p, w, c = generate_random_data(j, i, j)
+            for r in range(10):
                 r_dir = os.path.join(n_dir, str(r))
                 os.mkdir(r_dir)
                 os.chdir(r_dir)
