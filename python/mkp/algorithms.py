@@ -9,7 +9,6 @@ import pandas as pd
  
 try:
     from mkp._algorithms_cy.mtm_cy import cyMTMSolver
-    from mkp._algorithms_cy.mthm import cython_mthm
 except:
     raise ImportError("Could not import module - most likely Cython / C++ "
                       "was not compiled properly")
@@ -108,31 +107,3 @@ def mtm(p, w, c, max_bt=-1, max_time=3600):
         raise ValueError("Solution not valid:\n%s" % df)
     
     return z,x,bt,glopt
-
-
-def mthm (w, c, p=None, min_iter=10):
-    """Solves the multi-knapsack problem with an approximate method
-
-    This is based on the "mthm" method detailed on pages 177-82 in
-    http://www.or.deis.unibo.it/kp/Chapter6.pdf.
-
-    Parameters
-    ----------
-    w : array of item weights
-    c : array of capacities
-    p : array of item profits (optional)
-    min_iter : minimum number of improvement trials to run (optional)
-
-    Returns
-    -------
-    scalar sum of profits that were able to be packed in the knapsacks
-    1D array of length len(p) that contains the knapsack assignments for each
-        item
-    """
-
-    assert w.dtype == c.dtype
-
-    if p is None:
-        p = w.copy()
-
-    return cython_mthm(p, w, c, min_iter)
