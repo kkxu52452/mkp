@@ -5,10 +5,10 @@ from mkp.algorithms import mtm
 import numpy as np
 import time
 
-p = [110, 150, 70, 80, 30, 5]
-w = [40, 60, 30, 40, 20, 5]
-c = [65, 85]
-
+# p = [110, 150, 70, 80, 30, 5]
+# w = [40, 60, 30, 40, 20, 5]
+# c = [65, 85]
+ 
 
 def generate_random_data(n, m):
     rng = np.random
@@ -27,20 +27,16 @@ def generate_random_data(n, m):
         else:
             c.append(w[lower_index:].sum())
         lower_index = upper_index
-    c = np.array(c)
+    w = w.tolist()
+    p = p.tolist()
 
     return p, w, c
 
 
 def heuristic(p, w, c):
-    start = time.perf_counter()
-
-    p = p.tolist()
-    w = w.tolist()
-    c = c.tolist()
-
     n = len(w)
     m = len(c)
+
     y = [0]*n
     c_bar = [0]*m
     z = [0]*n
@@ -58,41 +54,25 @@ def heuristic(p, w, c):
     
     return z, y
 
+def main():
+    n = 10
+    m = 3
+    p, w, c = generate_random_data(n, m)
 
-start = time.perf_counter()
-z,x,bt,_ = mtm(p, w, c)
-print('Total profit: %d' % z)
-print('Solution: %s' % x)
-print('Number of backtracks performed: %d' % bt)
-print('Time spent: %.5f' % round(time.perf_counter() - start, 5))
-print('=============================')
+    start = time.perf_counter()
+    z,x,bt,_ = mtm(p, w, c)
+    print('Total profit: %d' % z)
+    print('Solution: %s' % x)
+    print('Number of backtracks performed: %d' % bt)
+    print('Time spent: %.5f' % round(time.perf_counter() - start, 5))
+    print('=============================')
 
-start = time.perf_counter()
-z,x = heuristic(p, w, c)
-print('Total profit: %d' % sum(z))
-print('Solution: %s' % x)
-print('Time spent: %.5f' % round(time.perf_counter() - start, 5))
-print('=============================')
+    start = time.perf_counter()
+    z,x = heuristic(p, w, c)
+    print('Total profit: %d' % sum(z))
+    print('Solution: %s' % x)
+    print('Time spent: %.5f' % round(time.perf_counter() - start, 5))
+    print('=============================')
 
-
-# def main():
-#     n = 100
-#     m = 10
-#     p, w, c = generate_random_data(n, m)
-
-#     start = time.perf_counter()
-
-#     y = [0]*n
-#     c_bar = [0]*m
-#     z = [0]*n
-
-#     for j in range(n):
-#         y[j] = -1
-
-#     for i in range(m):
-#         c_bar[i] = c[i]
-#         greedy(i, n, c_bar, y, z, p, w)
-
-#     print('Total profit: %d' % sum(z))
-#     print('Solution: %s' % y)
-#     print('Time spent: %.5f' % round(time.perf_counter() - start, 5))
+if __name__ == '__main__':
+    main()
