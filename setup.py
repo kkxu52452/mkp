@@ -16,6 +16,13 @@ ext_modules += cythonize(Extension(
     language='c++',
     extra_compile_args=["-std=c++1y"]))
 
+ext_modules += cythonize(Extension(
+    "mkp._algorithms_cy.mthm", 
+    sources=["cpp/mthm.hpp","cpp/math_utils.hpp","cpp/greedy.hpp","python/mkp/_algorithms_cy/mthm.pyx"], 
+    include_dirs=['cpp/'],
+    language='c++',
+    extra_compile_args=["-std=c++1y"]))
+
 
 setup(name='mkp',
       version='1.0',
