@@ -1,10 +1,10 @@
-
-
 from __future__ import division
 from mkp.algorithms import mtm
 import numpy as np
 import time
 import csv
+import os
+import shutil
 
 # p = [110, 150, 70, 80, 30, 5]
 # w = [40, 60, 30, 40, 20, 5]
@@ -66,19 +66,40 @@ def write_csv(f, z, t):
 
 
 def main():
-    n = 10
-    m = 3
-    p, w, c = generate_random_data(n, m)
+    # n = [1000, 2000, 3000, 4000, 5000]
+    # m = [20, 40, 60, 80, 100]
 
-    start = time.perf_counter()
-    z,x = heuristic(p, w, c)
-    t = round(time.perf_counter() - start, 5)
-    write_csv('g', z, t)
+    n = [100, 200]
+    m = [10, 20]
+    parent_dir = os.getcwd()
+    path = os.path.join(parent_dir, 'output')
+    if os.path.exists(path) and os.path.isdir(path):
+        shutil.rmtree(path)
 
-    start = time.perf_counter()
-    z,x,bt,_ = mtm(p, w, c)
-    t = round(time.perf_counter() - start, 5)
-    write_csv('o', z, t)
+    os.mkdir(path)
+
+    for i in m:
+        m_dir = os.path.join(path, str(i))
+        os.mkdir(m_dir)
+        for j in n:
+            n_dir = os.path.join(m_dir, str(j))
+            os.mkdir(n_dir)
+            os.chdir(n_dir)
+            p, w, c = generate_random_data(j, i)
+            for r in range(100):
+                r_dir = os.path.join(n_dir, str(r))
+                os.mkdir(r_dir)
+                os.chdir(r_dir)
+                
+                start = time.perf_counter()
+                z, x = heuristic(p, w, c)
+                t = round(time.perf_counter() - start, 5)
+                write_csv('greedy', z, t)
+
+                start = time.perf_counter()
+                z, x, _, _ = mtm(p, w, c)
+                t = round(time.perf_counter() - start, 5)
+                write_csv('exact', z, t)
 
 
 
