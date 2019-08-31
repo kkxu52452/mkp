@@ -70,7 +70,7 @@ def main():
     m = [5, 6, 7, 8, 9, 10]
 
     parent_dir = os.getcwd()
-    path = os.path.join(parent_dir, 'output')
+    path = os.path.join(parent_dir, 'output_trend')
     if os.path.exists(path) and os.path.isdir(path):
         shutil.rmtree(path)
 
