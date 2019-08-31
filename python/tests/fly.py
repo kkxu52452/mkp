@@ -66,8 +66,8 @@ def write_csv(f, z, t):
 
 
 def main():
-    n = [10, 20, 40, 60, 80, 100]
-    m = [2, 3, 5, 6, 8, 10]
+    n = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+    m = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
     parent_dir = os.getcwd()
     path = os.path.join(parent_dir, 'output_trend')
@@ -84,20 +84,16 @@ def main():
             os.mkdir(n_dir)
             os.chdir(n_dir)
             p, w, c = generate_random_data(j, i, j)
-            for r in range(10):
-                r_dir = os.path.join(n_dir, str(r))
-                os.mkdir(r_dir)
-                os.chdir(r_dir)
                 
-                start = time.perf_counter()
-                z, x = heuristic(p, w, c)
-                t = round(time.perf_counter() - start, 5)
-                write_csv('greedy', z, t)
+            start = time.perf_counter()
+            z, x = heuristic(p, w, c)
+            t = round(time.perf_counter() - start, 5)
+            write_csv('greedy', z, t)
 
-                start = time.perf_counter()
-                z, x, _, _ = mtm(p, w, c)
-                t = round(time.perf_counter() - start, 5)
-                write_csv('exact', z, t)
+            start = time.perf_counter()
+            z, x, _, _ = mtm(p, w, c)
+            t = round(time.perf_counter() - start, 5)
+            write_csv('exact', z, t)
 
 
 
