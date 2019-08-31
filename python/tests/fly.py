@@ -66,8 +66,8 @@ def write_csv(f, z, t):
 
 
 def main():
-    n = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
-    m = [2, 3, 4, 5, 6, 7, 8, 9, 10]
+    n = [10, 20, 40, 60, 80, 100]
+    m = [5, 6, 7, 8, 9, 10]
 
     parent_dir = os.getcwd()
     path = os.path.join(parent_dir, 'output')
