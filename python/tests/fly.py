@@ -24,7 +24,7 @@ def generate_random_data(n, m, ra):
     upper_index = 0
     for i in range(m):
         if i < m - 1:
-            upper_index = rng.randint(w.size//(m + 1), w.size//m) + lower_index
+            upper_index = rng.randint(w.size//(m + 1), w.size//m + 1) + lower_index
             c.append(w[lower_index:upper_index].sum())
         else:
             c.append(w[lower_index:].sum())
