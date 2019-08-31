@@ -21,6 +21,7 @@ def generate_random_data(n, m, ra):
     # capacities
     c = []
     lower_index = 0
+    upper_index = 0
     for i in range(m):
         if i < m - 1:
             upper_index = rng.randint(w.size//(m + 1), w.size//m) + lower_index
