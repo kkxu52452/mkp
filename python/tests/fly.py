@@ -67,7 +67,7 @@ def write_csv(f, z, t):
 
 def main():
     n = [10, 20, 40, 60, 80, 100]
-    m = [5, 6, 7, 8, 9, 10]
+    m = [2, 3, 5, 6, 8, 10]
 
     parent_dir = os.getcwd()
     path = os.path.join(parent_dir, 'output_trend')
